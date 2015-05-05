@@ -16,6 +16,7 @@ var server = http.createServer(function(req, res) {
       'Content-Type': 'application/json'
     });
 
+    // POST request
     if (req.method === 'POST') {
       req.on('data', function(data) {
         var body = JSON.parse(data.toString('utf-8'));
@@ -25,7 +26,7 @@ var server = http.createServer(function(req, res) {
     } else {
       res.write(JSON.stringify({msg: 'hello ' + req.url}));
     }
-
+  // Not found
   } else {
     res.writeHead(404, {
       'Content-Type': 'application/json'
