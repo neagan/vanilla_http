@@ -3,15 +3,17 @@
 var http = require('http');
 
 var server = http.createServer(function(req, res) {
+  // Time route
   if (req.url === '/time') {
     res.writeHead(200, {
       'Content-Type': 'application/json'
     });
 
     var date = new Date();
-    res.write(date.getHours() + ':' + date.getMinutes());
+    res.write(JSON.stringify({msg: date.getHours() + ':' + date.getMinutes()}));
     res.end();
-  } else if (req.url === '/greet') {
+  // Greet route
+  } else if (req.url.slice(0, 6) === '/greet') {
     res.writeHead(200, {
       'Content-Type': 'application/json'
     });
@@ -23,8 +25,11 @@ var server = http.createServer(function(req, res) {
         res.write(JSON.stringify({msg: 'hello ' + body.name}));
         res.end();
       });
+    // Name in url
     } else {
-      res.write(JSON.stringify({msg: 'hello ' + req.url}));
+      var body = req.url.slice(7);
+      res.write(JSON.stringify({msg: 'hello ' + body}));
+      res.end();
     }
   // Not found
   } else {
