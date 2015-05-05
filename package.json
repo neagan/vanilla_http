@@ -4,7 +4,8 @@
   "description": "http server in node that responds to several different routes",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/grunt-cli/bin/grunt test",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
